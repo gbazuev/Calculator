@@ -6,7 +6,7 @@ public class Calculator {
     static TokenStorage tokenStorage = new TokenStorage();
     static Parser parser = new Parser();
 
-;    public int calculate(StringBuilder expression) {
+    public int calculate(StringBuilder expression) {
         int bracketStart = expression.lastIndexOf("(");
         int bracketEnd = expression.indexOf(")", bracketStart);
 
