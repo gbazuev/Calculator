@@ -1,5 +1,4 @@
-//2. Доработайте калькулятор: при неверном вводе выбрасывайте исключение
-package HWm4t6n2;
+package HWm4t6n2.src.java;
 
 import java.util.Scanner;
 

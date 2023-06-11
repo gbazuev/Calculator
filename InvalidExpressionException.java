@@ -1,4 +1,4 @@
-package HWm4t6n2;
+package HWm4t6n2.src.java;
 
 public class InvalidExpressionException extends RuntimeException {
     InvalidExpressionException(String expression)   {

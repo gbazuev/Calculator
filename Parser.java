@@ -1,4 +1,4 @@
-package HWm4t6n2;
+package HWm4t6n2.src.java;
 
 import java.util.ArrayList;
 
@@ -23,8 +23,6 @@ public class Parser {
         ArrayList<Integer> localOperandsStorage = new ArrayList<>();
         StringBuilder token = new StringBuilder();
 
-        //(completed)TODO: -3 + ((-3) + 2 * 6) - 1 fix bug with '-' conflict
-
         for (int index = 0; index < expression.length(); index++) {
             if (validator.isNumber(expression.charAt(index))) {
                 token.append(expression.charAt(index));
@@ -32,7 +30,6 @@ public class Parser {
             }
 
             if (expression.charAt(index) == '-') {
-                //Проверка на то, какую роль играет минус (оператор или отрицание)
                 if (index > 0) {
                     if (validator.isOperator(expression.charAt(index - 1)) &&
                             validator.isNumber(expression.charAt(index + 1))) {

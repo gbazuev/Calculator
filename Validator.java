@@ -1,4 +1,4 @@
-package HWm4t6n2;
+package HWm4t6n2.src.java;
 
 public class Validator {
     private final int[] NUMBERS = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};

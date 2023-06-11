@@ -1,6 +1,4 @@
-package HWm4t6n2;
-
-import java.math.BigDecimal;
+package HWm4t6n2.src.java;
 
 public class Calculator {
     static TokenStorage tokenStorage = new TokenStorage();
