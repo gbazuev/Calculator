@@ -1,5 +1,6 @@
 package com.gbazuev;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public class Parser {
@@ -18,12 +19,12 @@ public class Parser {
         return localOperatorsStorage;
     }
 
-    public ArrayList<Integer> getOperands(StringBuilder expression) {
-        ArrayList<Integer> localOperandsStorage = new ArrayList<>();
+    public ArrayList<BigDecimal> getOperands(StringBuilder expression) {
+        ArrayList<BigDecimal> localOperandsStorage = new ArrayList<>();
         StringBuilder token = new StringBuilder();
 
         for (int index = 0; index < expression.length(); index++) {
-            if (validator.isNumber(expression.charAt(index))) {
+            if (validator.isNumber(expression.charAt(index)) || validator.isDot(expression.charAt(index))) {
                 token.append(expression.charAt(index));
                 continue;
             }
@@ -43,7 +44,7 @@ public class Parser {
                 }
             }
 
-            localOperandsStorage.add(Integer.parseInt(token.toString()));
+            localOperandsStorage.add(new BigDecimal(token.toString()));
             token.delete(0, token.length());
         }
 

@@ -1,10 +1,12 @@
 package com.gbazuev;
 
+import java.math.BigDecimal;
+
 public class Calculator {
     private static final TokenStorage tokenStorage = new TokenStorage();
     private static final Parser parser = new Parser();
 
-    public int calculate(StringBuilder expression) {
+    public BigDecimal calculate(StringBuilder expression) {
         int bracketStart = expression.lastIndexOf("(");
         int bracketEnd = expression.indexOf(")", bracketStart);
 
@@ -15,26 +17,24 @@ public class Calculator {
 
             while (!tokenStorage.getOperatorsList().isEmpty()) {
                 char currentOperator = tokenStorage.getOperator();
-                int[] operands = tokenStorage.getOperands();
+                BigDecimal[] operands = tokenStorage.getOperands();
 
-                int result = action(operands[0], operands[1], currentOperator);
+                BigDecimal result = action(operands[0], operands[1], currentOperator);
                 tokenStorage.replaceOperands(result);
                 tokenStorage.deleteOperator();
             }
 
             return tokenStorage.getOperandsList().get(0);
-        }
-
-        else {
+        } else {
             StringBuilder bracketExpression = new StringBuilder(expression.substring(bracketStart + 1, bracketEnd) + " ");
             tokenStorage.setOperandsList(parser.getOperands(bracketExpression));
             tokenStorage.setOperatorsList(parser.getOperators(bracketExpression));
 
             while (!tokenStorage.getOperatorsList().isEmpty()) {
                 char operator = tokenStorage.getOperator();
-                int[] operands = tokenStorage.getOperands();
+                BigDecimal[] operands = tokenStorage.getOperands();
 
-                int result = action(operands[0], operands[1], operator);
+                BigDecimal result = action(operands[0], operands[1], operator);
                 tokenStorage.replaceOperands(result);
                 tokenStorage.deleteOperator();
             }
@@ -43,27 +43,27 @@ public class Calculator {
         }
     }
 
-    private int action(int first, int second, char operator) {
+    private BigDecimal action(BigDecimal first, BigDecimal second, char operator) {
         if (operator == '+') return add(first, second);
         if (operator == '-') return substract(first, second);
         if (operator == '*') return multiply(first, second);
         if (operator == '/') return divide(first, second);
-        return 0;
+        return new BigDecimal("0");
     }
 
-    private int add(int first, int second) {
-        return first + second;
+    private BigDecimal add(BigDecimal first, BigDecimal second) {
+        return new BigDecimal(String.valueOf(first.add(second)));
     }
 
-    private int substract(int first, int second) {
-        return first - second;
+    private BigDecimal substract(BigDecimal first, BigDecimal second) {
+        return new BigDecimal(String.valueOf(first.subtract(second)));
     }
 
-    private int multiply(int first, int second) {
-        return first * second;
+    private BigDecimal multiply(BigDecimal first, BigDecimal second) {
+        return new BigDecimal(String.valueOf(first.multiply(second)));
     }
 
-    private int divide(int first, int second) {
-        return first / second;
+    private BigDecimal divide(BigDecimal first, BigDecimal second) {
+        return new BigDecimal(String.valueOf(first.divide(second)));
     }
 }

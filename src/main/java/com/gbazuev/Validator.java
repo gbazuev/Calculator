@@ -19,6 +19,10 @@ public class Validator {
         return false;
     }
 
+    public boolean isDot(char symbol)   {
+        return symbol == '.';
+    }
+
     public StringBuilder removeNegativeOperators(StringBuilder expression)  {
         for (int index = 0; index < expression.length() - 1; index++)   {
             if (expression.charAt(index) == '-' && isNumber(expression.charAt(index + 1))) {
